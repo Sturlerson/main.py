@@ -19,6 +19,8 @@ from wtforms.validators import DataRequired
 from forms import CreatePostForm
 from flask_gravatar import Gravatar
 
+import os
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 ckeditor = CKEditor(app)
@@ -26,7 +28,7 @@ Bootstrap(app)
 app.config['CKEDITOR_PKG_TYPE'] = 'full'
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("postgres://unzbruyxoozphc:6df434474765c77a619a6ac0a3cfd30560d1a3634ac3549faa42472b881e9138@ec2-54-228-218-84.eu-west-1.compute.amazonaws.com:5432/db4mni59h52trf")
 app.config.from_object(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
