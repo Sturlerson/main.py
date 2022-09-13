@@ -26,6 +26,12 @@ import click
 from flask.cli import with_appcontext
 
 
+app = Flask(__name__)
+app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+ckeditor = CKEditor(app)
+Bootstrap(app)
+app.config['CKEDITOR_PKG_TYPE'] = 'full'
+
 @click.command(name="create_tables")
 @with_appcontext
 def create_tables():
@@ -33,12 +39,6 @@ def create_tables():
 
 
 app.cli.add_command(create_tables)
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
-ckeditor = CKEditor(app)
-Bootstrap(app)
-app.config['CKEDITOR_PKG_TYPE'] = 'full'
 
 ##CONNECT TO DB
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://unzbruyxoozphc:6df434474765c77a619a6ac0a3cfd30560d1a3634ac3549faa42472b881e9138@ec2-54-228-218-84.eu-west-1.compute.amazonaws.com:5432/db4mni59h52trf"
