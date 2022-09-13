@@ -21,6 +21,18 @@ from flask_gravatar import Gravatar
 
 import os
 
+import click
+from flask.cli import with_appcontext
+
+
+@click.command(name="create_tables")
+@with_appcontext
+def create_tables():
+    db.create_all()
+
+
+app.cli.add_command(create_tables)
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 ckeditor = CKEditor(app)
